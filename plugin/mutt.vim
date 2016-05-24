@@ -18,7 +18,7 @@
 " Keywords: email, vim, edit, reply, attribution, subject, cursor, place.
 
 " Function used to identify where to place the cursor, editing an email.
-function FirstInPost (...) range
+function! FirstInPost (...) range
   let cur = a:firstline
   while cur <= a:lastline
     let str = getline(cur)
@@ -39,13 +39,14 @@ function FirstInPost (...) range
       " a new mail, and not editing a reply).
       " NOTE: modify the regexp to match your mail client's attribution!
       if strlen(matchstr(getline(cur), '^\*\s.*\[.*\].*')) > 0
-        let cur = cur + 1
+        let cur = cur + 2
       endif
-	  if strlen(matchstr(getline(cur), '^\>.*')) > 0
+	  while strlen(matchstr(getline(cur), '^>.*')) > 0
         let cur = cur + 1
-      endif
+      endwhile
       execute cur
       :start
+      :execute "normal i\<End>\n\n"
       break
     endif
     let cur = cur + 1
