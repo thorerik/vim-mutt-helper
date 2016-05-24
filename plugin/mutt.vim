@@ -54,4 +54,4 @@ function! FirstInPost (...) range
 endfunction
 
 " Command to be called.
-com Fip :set tw=0<Bar>:%call FirstInPost()
+com! Fip :set tw=0<Bar>:%call FirstInPost()
