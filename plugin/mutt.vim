@@ -41,6 +41,9 @@ function FirstInPost (...) range
       if strlen(matchstr(getline(cur), '^\*\s.*\[.*\].*')) > 0
         let cur = cur + 1
       endif
+	  if strlen(matchstr(getline(cur), '^\>.*')) > 0
+        let cur = cur + 1
+      endif
       execute cur
       :start
       break
